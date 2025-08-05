@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fe.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "fe.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "fe.name" . }}
+    spec:
+      containers:
+        - name: fe
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8001

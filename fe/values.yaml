@@ -1,0 +1,3 @@
+image:
+  repository: bastawadidocker/fullcicd
+  tag: fe-latest
