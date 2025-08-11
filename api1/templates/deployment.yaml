@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "api1.fullname" . }}
+  name: {{ .Release.Name }}-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "api1.name" . }}
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "api1.name" . }}
+        app: {{ .Release.Name }}
     spec:
       containers:
         - name: api1
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8001
+
